@@ -370,34 +370,6 @@ export const works: Work[] = [
     },
   },
   {
-    id: "infra",
-    title: "CLOUD INFRA",
-    badge: { ko: "AWS 3-tier · 코드로 재현", en: "AWS 3-TIER · FROM CODE" },
-    tag: "INFRA",
-    summary: {
-      ko: "VPC부터 오토스케일링까지 Terraform 모듈로 쪼개고, 구축 순서를 런북으로 고정한 환경입니다.",
-      en: "From VPC to autoscaling, split into Terraform modules with the build order fixed in a runbook.",
-    },
-    tech: ["AWS", "TERRAFORM", "EKS", "RDS"],
-    takeaway: {
-      ko: "콘솔로 만든 환경은 다시 만들 수 없습니다. 한 번의 apply로 같은 환경이 돌아오게 만든 뒤부터, 대회에서 구축이 아니라 트러블슈팅에 시간을 쓸 수 있었습니다.",
-      en: "An environment clicked together in a console cannot be rebuilt. Once one apply brought it back, competition time went to troubleshooting instead of setup.",
-    },
-    href: "#system",
-    hrefLabel: "SEE THE DIAGRAM →",
-    media: {
-      kind: "term",
-      label: "$ terraform apply",
-      lines: [
-        { text: "aws_vpc.main              created", tone: "ok" },
-        { text: "aws_subnet.private[0]     created", tone: "ok" },
-        { text: "module.eks.node_group     ACTIVE", tone: "ok" },
-        { text: "aws_db_instance.main      available", tone: "ok" },
-        { text: "Apply complete. 34 added.", tone: "accent" },
-      ],
-    },
-  },
-  {
     id: "game",
     title: "TURN-BASED GAME",
     badge: { ko: "고1 게임개발동아리", en: "G10 GAME DEV CLUB" },
