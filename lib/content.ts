@@ -181,6 +181,7 @@ export const stack: {
       { label: { ko: "REST API 설계", en: "REST API design" } },
       { label: { ko: "Python · boto3", en: "Python · boto3" } },
       { label: { ko: "Go · Gin", en: "Go · Gin" } },
+      { label: { ko: "C", en: "C" } },
       { label: { ko: "MySQL · TiDB", en: "MySQL · TiDB" } },
       { label: { ko: "DynamoDB", en: "DynamoDB" } },
       { label: { ko: "Redis · BullMQ", en: "Redis · BullMQ" } },
@@ -192,6 +193,7 @@ export const stack: {
     group: "FRONTEND",
     items: [
       { label: { ko: "Next.js", en: "Next.js" } },
+      { label: { ko: "Astro", en: "Astro" } },
       { label: { ko: "React", en: "React" } },
       { label: { ko: "TypeScript", en: "TypeScript" } },
       { label: { ko: "Tailwind CSS", en: "Tailwind CSS" } },
@@ -302,7 +304,7 @@ export const works: Work[] = [
       ko: "기능경기대회 학습 기록과 시행착오를 4주 로드맵으로 정리한 가이드북입니다.",
       en: "My competition notes and mistakes, rebuilt as a four-week roadmap.",
     },
-    tech: ["NEXT.JS", "VERCEL", "TECHNICAL WRITING"],
+    tech: ["ASTRO", "VERCEL", "TECHNICAL WRITING"],
     takeaway: {
       ko: '정답만 적으면 다음 사람은 상황이 조금 달라져도 막힙니다. "왜 그렇게 판단했는지"를 함께 적기 시작하면서, 설명할 수 있어야 진짜 아는 것이라는 걸 알았습니다.',
       en: "Answers alone stop working the moment the situation shifts. Writing down why I judged that way made me realize I only know what I can explain.",
