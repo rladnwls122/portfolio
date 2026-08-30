@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Work } from "@/lib/content";
+import { HoverVideo } from "./HoverVideo";
 import { T } from "./T";
 
 const toneClass = {
@@ -46,34 +47,8 @@ function Media({ work }: { work: Work }) {
     );
   }
 
-  // The GIF sits under an opaque first frame: an animation nobody asked to see
-  // is a distraction, and a GIF cannot be paused.
   return (
-    <>
-      <Image
-        src={m.src}
-        alt={m.alt}
-        fill
-        unoptimized
-        sizes="(max-width: 700px) 100vw, 45vw"
-        className="object-cover"
-      />
-      <div className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0">
-        <Image
-          src={m.poster}
-          alt=""
-          aria-hidden
-          fill
-          sizes="(max-width: 700px) 100vw, 45vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 grid place-items-center bg-bg/70">
-          <span className="font-mono text-[10px] tracking-[0.24em]">
-            <T v={m.hint} />
-          </span>
-        </div>
-      </div>
-    </>
+    <HoverVideo src={m.src} poster={m.poster} hint={m.hint} alt={m.alt} />
   );
 }
 

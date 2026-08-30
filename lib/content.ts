@@ -240,7 +240,7 @@ export const stack: {
 
 export type Media =
   | { kind: "swap"; still: string; motion: string; hint: Bi; alt: string }
-  | { kind: "gif"; src: string; poster: string; hint: Bi; alt: string }
+  | { kind: "video"; src: string; poster: string; hint: Bi; alt: string }
   | {
       kind: "term";
       label: string;
@@ -282,9 +282,9 @@ export const works: Work[] = [
     hrefLabel: "OPEN ↗",
     links: [{ label: "GITHUB · I-EA ↗", href: "https://github.com/rladnwls122/I-EA" }],
     media: {
-      kind: "gif",
-      src: "/img/idea-demo.gif",
-      poster: "/img/idea-demo-poster.png",
+      kind: "video",
+      src: "/img/idea-demo.mp4",
+      poster: "/img/idea-demo-poster.webp",
       hint: { ko: "마우스를 올리면 재생", en: "HOVER TO PLAY" },
       alt: "IΔEA 서비스 데모 화면",
     },
@@ -412,9 +412,9 @@ export const works: Work[] = [
       en: "Turn order, mana, status effects — one new rule, two new bugs. The game taught me to keep state in one place.",
     },
     media: {
-      kind: "gif",
-      src: "/img/game.gif",
-      poster: "/img/game-poster.png",
+      kind: "video",
+      src: "/img/game.mp4",
+      poster: "/img/game-poster.webp",
       hint: { ko: "마우스를 올리면 재생", en: "HOVER TO PLAY" },
       alt: "고등학교 1학년 때 만든 턴제 카드 게임",
     },
