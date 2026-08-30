@@ -2,7 +2,7 @@
 export type Bi = { ko: string; en: string };
 
 export const owner = {
-  name: "KRYUK",
+  name: "WOOJIN",
   email: "kryukihide2009@gmail.com",
   github: "https://github.com/rladnwls122",
 };

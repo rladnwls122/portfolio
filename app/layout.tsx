@@ -17,11 +17,11 @@ const plex = IBM_Plex_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: "KRYUK — Build. Break. Solve.",
+  title: "WOOJIN — Build. Break. Solve.",
   description:
     "클라우드 인프라부터 백엔드 API, 실제로 쓰이는 화면까지 만드는 고등학생 개발자의 포트폴리오. AWS · Kubernetes · Terraform · NestJS · Next.js.",
   openGraph: {
-    title: "KRYUK — Build. Break. Solve.",
+    title: "WOOJIN — Build. Break. Solve.",
     description:
       "Cloud infrastructure, backend APIs and the screens people actually use. A portfolio.",
     type: "website",
