@@ -240,7 +240,12 @@ export const stack: {
 
 export type Media =
   | { kind: "swap"; still: string; motion: string; hint: Bi; alt: string }
-  | { kind: "video"; src: string; poster: string; hint: Bi; alt: string }
+  | {
+      kind: "video";
+      clips: { src: string; poster: string }[];
+      hint: Bi;
+      alt: string;
+    }
   | {
       kind: "term";
       label: string;
@@ -251,7 +256,6 @@ export type Work = {
   id: string;
   title: string;
   badge: Bi;
-  tag: string;
   summary: Bi;
   tech: string[];
   takeaway: Bi;
@@ -267,7 +271,6 @@ export const works: Work[] = [
     id: "idea",
     title: "IΔEA",
     badge: { ko: "교내 개발마라톤 수상작", en: "HACKATHON AWARD" },
-    tag: "LIVE",
     summary: {
       ko: "문항을 골라 담아 풀고 → 틀린 이유를 태그·주석으로 남기고 → AI가 약점 데이터로 다시 출제하는 학습 루프를 하나의 플랫폼에 담았습니다.",
       en: "Pick questions and take the exam → tag and annotate why you got it wrong → the AI regenerates from your weakness data. One closed learning loop.",
@@ -283,8 +286,10 @@ export const works: Work[] = [
     links: [{ label: "GITHUB · I-EA ↗", href: "https://github.com/rladnwls122/I-EA" }],
     media: {
       kind: "video",
-      src: "/img/idea-demo.mp4",
-      poster: "/img/idea-demo-poster.webp",
+      clips: [
+        { src: "/img/idea-demo.mp4", poster: "/img/idea-demo-poster.webp" },
+        { src: "/img/idea-demo-2.mp4", poster: "/img/idea-demo-2-poster.webp" },
+      ],
       hint: { ko: "마우스를 올리면 재생", en: "HOVER TO PLAY" },
       alt: "IΔEA 서비스 데모 화면",
     },
@@ -293,7 +298,6 @@ export const works: Work[] = [
     id: "guidebook",
     title: "GUIDEBOOK",
     badge: { ko: "후배들을 위한 학습 모듈", en: "FOR THE NEXT COHORT" },
-    tag: "LIVE",
     summary: {
       ko: "기능경기대회 학습 기록과 시행착오를 4주 로드맵으로 정리한 가이드북입니다.",
       en: "My competition notes and mistakes, rebuilt as a four-week roadmap.",
@@ -305,6 +309,12 @@ export const works: Work[] = [
     },
     href: "https://skills-2026-learn-module.vercel.app/",
     hrefLabel: "OPEN ↗",
+    links: [
+      {
+        label: "GITHUB · SKILLS-GUIDE ↗",
+        href: "https://github.com/rladnwls122/skills-guide",
+      },
+    ],
     media: {
       kind: "swap",
       still: "/img/guide-hero.png",
@@ -317,7 +327,6 @@ export const works: Work[] = [
     id: "monitoring",
     title: "MONITORING",
     badge: { ko: "클라우드 · K8s 대시보드", en: "CLOUD · K8S DASHBOARD" },
-    tag: "DASHBOARD",
     summary: {
       ko: '"지금 무엇이 아픈가"만 첫 화면에 남기고, 나머지 지표는 드릴다운으로 밀어 넣은 대시보드입니다.',
       en: 'The first screen answers only "what hurts right now"; everything else moved into drill-downs.',
@@ -345,7 +354,6 @@ export const works: Work[] = [
     id: "skills-2026",
     title: "SKILLS-2026",
     badge: { ko: "팀 대회 준비 저장소", en: "TEAM TRAINING REPO" },
-    tag: "TEAM REPO",
     summary: {
       ko: "각자 흩어져 있던 연습 기록과 환경 구성 스크립트, 런북을 저장소 하나로 모았습니다.",
       en: "One repository for the practice logs, setup scripts and runbooks we each kept separately.",
@@ -373,7 +381,6 @@ export const works: Work[] = [
     id: "game",
     title: "TURN-BASED GAME",
     badge: { ko: "고1 게임개발동아리", en: "G10 GAME DEV CLUB" },
-    tag: "ARCHIVE",
     summary: {
       ko: '카드 · 턴제 전투 게임. 처음으로 "돌아가는 것"을 완성한 프로젝트입니다.',
       en: "A card-based turn combat game — the first thing I made that actually ran.",
@@ -385,8 +392,7 @@ export const works: Work[] = [
     },
     media: {
       kind: "video",
-      src: "/img/game.mp4",
-      poster: "/img/game-poster.webp",
+      clips: [{ src: "/img/game.mp4", poster: "/img/game-poster.webp" }],
       hint: { ko: "마우스를 올리면 재생", en: "HOVER TO PLAY" },
       alt: "고등학교 1학년 때 만든 턴제 카드 게임",
     },

@@ -47,9 +47,7 @@ function Media({ work }: { work: Work }) {
     );
   }
 
-  return (
-    <HoverVideo src={m.src} poster={m.poster} hint={m.hint} alt={m.alt} />
-  );
+  return <HoverVideo clips={m.clips} hint={m.hint} alt={m.alt} />;
 }
 
 export function WorkCard({ work }: { work: Work }) {
@@ -59,9 +57,6 @@ export function WorkCard({ work }: { work: Work }) {
   const media = (
     <>
       <Media work={work} />
-      <span className="absolute left-3 top-3 bg-accent px-2.5 py-1.5 font-mono text-[9px] font-bold tracking-[0.18em] text-accent-ink">
-        {work.tag}
-      </span>
       {work.hrefLabel && (
         <span className="absolute bottom-3 right-3 font-mono text-[10.5px] tracking-[0.16em] text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.8)]">
           {work.hrefLabel}
