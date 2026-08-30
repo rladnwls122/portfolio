@@ -1,4 +1,4 @@
-# kryuk-portfolio
+# My-portfolio
 
 Next.js 16 · React 19 · TypeScript · Tailwind CSS v4. Static — deploys to Vercel with no configuration.
 
