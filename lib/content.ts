@@ -290,7 +290,7 @@ export const works: Work[] = [
         { src: "/img/idea-demo.mp4", poster: "/img/idea-demo-poster.webp" },
         { src: "/img/idea-demo-2.mp4", poster: "/img/idea-demo-2-poster.webp" },
       ],
-      hint: { ko: "마우스를 올리면 재생", en: "HOVER TO PLAY" },
+      hint: { ko: "마우스를 올리면 정지", en: "HOVER TO PAUSE" },
       alt: "IΔEA 서비스 데모 화면",
     },
   },
@@ -393,7 +393,7 @@ export const works: Work[] = [
     media: {
       kind: "video",
       clips: [{ src: "/img/game.mp4", poster: "/img/game-poster.webp" }],
-      hint: { ko: "마우스를 올리면 재생", en: "HOVER TO PLAY" },
+      hint: { ko: "마우스를 올리면 정지", en: "HOVER TO PAUSE" },
       alt: "고등학교 1학년 때 만든 턴제 카드 게임",
     },
   },

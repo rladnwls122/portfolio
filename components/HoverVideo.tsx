@@ -1,14 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { useRef, useState } from "react";
 import type { Bi } from "@/lib/content";
 import { T } from "./T";
 
 /**
- * A demo clip that holds on its first frame until the reader asks for it.
- * Nothing is fetched beyond metadata until the first play, and the clip resets
- * when the pointer leaves so the card always reads the same way.
+ * A demo clip that runs on its own and holds still while the pointer rests on
+ * it, so a reader can stop on the frame they want to look at.
  */
 export function HoverVideo({
   clips,
@@ -21,25 +19,17 @@ export function HoverVideo({
 }) {
   const video = useRef<HTMLVideoElement>(null);
   const hovering = useRef(false);
-  const [playing, setPlaying] = useState(false);
   const [current, setCurrent] = useState(0);
 
-  const play = () => {
+  const pause = () => {
     hovering.current = true;
-    // Autoplay policies can still refuse; the poster simply stays up.
-    video.current?.play().then(
-      () => setPlaying(true),
-      () => setPlaying(false),
-    );
+    video.current?.pause();
   };
 
-  const stop = () => {
+  const resume = () => {
     hovering.current = false;
-    const el = video.current;
-    if (!el) return;
-    el.pause();
-    el.currentTime = 0;
-    setPlaying(false);
+    // Autoplay policies can still refuse; the poster frame simply stays up.
+    video.current?.play().catch(() => {});
   };
 
   const pick = (i: number) => (e: React.MouseEvent) => {
@@ -47,42 +37,33 @@ export function HoverVideo({
     e.preventDefault();
     e.stopPropagation();
     setCurrent(i);
-    setPlaying(false);
   };
 
   return (
-    <div className="absolute inset-0" onMouseEnter={play} onMouseLeave={stop}>
+    <div className="absolute inset-0" onMouseEnter={pause} onMouseLeave={resume}>
       <video
         ref={video}
         key={clips[current].src}
         src={clips[current].src}
+        poster={clips[current].poster}
         aria-label={alt}
+        autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
         tabIndex={-1}
-        onCanPlay={() => hovering.current && play()}
+        // A clip picked while the pointer is resting here should stay held.
+        onCanPlay={() => hovering.current && video.current?.pause()}
         className="size-full object-cover"
       />
+
       <div
         aria-hidden
-        className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${
-          playing ? "opacity-0" : "opacity-100"
-        }`}
+        className="pointer-events-none absolute inset-0 grid place-items-center bg-bg/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
       >
-        <Image
-          src={clips[current].poster}
-          alt=""
-          fill
-          sizes="(max-width: 700px) 100vw, 45vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 grid place-items-center bg-bg/70">
-          <span className="font-mono text-[10px] tracking-[0.24em]">
-            <T v={hint} />
-          </span>
-        </div>
+        <span className="font-mono text-[10px] tracking-[0.24em]">
+          <T v={hint} />
+        </span>
       </div>
 
       {clips.length > 1 && (
