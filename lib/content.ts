@@ -46,8 +46,8 @@ export const logLines = [
 
 export const about = {
   lead: {
-    ko: "인천의 고등학생 개발자입니다. 클라우드 인프라를 세우고, 그 위에 백엔드 API를 올려, 사람이 실제로 쓰는 화면까지 붙입니다.",
-    en: "A high-school developer in Incheon. I stand up the cloud infrastructure, put the backend API on top of it, and ship the screens people actually use.",
+    ko: "인천의 고등학생 개발자 김우진입니다. 클라우드 인프라를 세우고, 그 위에 백엔드 API를 올려, 사람이 실제로 쓰는 화면까지 붙입니다.",
+    en: "I'm Woojin Kim, a high-school developer in Incheon. I stand up the cloud infrastructure, put the backend API on top of it, and ship the screens people actually use.",
   } as Bi,
   body: {
     ko: "프로젝트를 하면서 배운 건 기술보다 태도였습니다. 혼자 잘하는 것보다 함께 만드는 법 — 규칙을 정하고, 기록을 남기고, 다음 사람이 이어받을 수 있게 하는 일. 지금도 같은 방식으로 서비스를 만들고 있습니다.",
