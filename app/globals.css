@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #08090a;
+  --fg: #f2f3f1;
+  --dim: rgba(242, 243, 241, 0.62);
+  --faint: rgba(242, 243, 241, 0.38);
+  --line: rgba(242, 243, 241, 0.15);
+  --line-soft: rgba(242, 243, 241, 0.09);
+  --card: rgba(242, 243, 241, 0.035);
+  --accent: oklch(0.85 0.19 142);
+  --accent-ink: #08090a;
+  --select-bg: oklch(0.85 0.19 142);
+}
+
+body[data-theme="light"] {
+  --bg: #f4f3ef;
+  --fg: #101112;
+  --dim: rgba(16, 17, 18, 0.66);
+  --faint: rgba(16, 17, 18, 0.44);
+  --line: rgba(16, 17, 18, 0.17);
+  --line-soft: rgba(16, 17, 18, 0.09);
+  --card: rgba(16, 17, 18, 0.03);
+  --accent: oklch(0.58 0.16 150);
+  --accent-ink: #ffffff;
+  /* Selection keeps the bright emerald in both themes so black text stays legible. */
+  --select-bg: oklch(0.85 0.19 142);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-dim: var(--dim);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --font-mono: var(--font-jetbrains), var(--font-plex), ui-monospace, monospace;
+  --font-sans: var(--font-plex), system-ui, -apple-system, sans-serif;
+}
+
+/* Everything below belongs to a layer. Unlayered rules outrank every Tailwind
+   utility regardless of specificity, which silently breaks `text-*` on links. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    overflow-x: hidden;
+    transition: background 0.45s ease, color 0.45s ease;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--select-bg);
+    color: #08090a;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  details[open] [data-chev] {
+    transform: rotate(45deg);
+  }
+
+  /* Language switch is pure CSS: both strings ship, one is hidden. */
+  body[data-lang="en"] [data-ko],
+  body[data-lang="ko"] [data-en] {
+    display: none;
+  }
+
+  body.js-reveal [data-reveal] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  body.js-reveal [data-reveal].in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer components {
+  /* Section padding shared by every band. */
+  .band {
+    position: relative;
+    padding: clamp(80px, 12vh, 150px) clamp(20px, 5vw, 64px);
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    color: var(--accent);
+  }
+
+  .section-title {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: clamp(26px, 4.4vw, 62px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  /* Grid cells that hairline against each other without doubled borders. */
+  .cell {
+    background: var(--bg);
+    box-shadow: 1px 0 0 var(--line-soft), 0 1px 0 var(--line-soft);
+  }
+}
+
+@keyframes logscroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(3deg);
+  }
+}
+@keyframes floaty2 {
+  0%,
+  100% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-3deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @layer base {
+    html {
+      scroll-behavior: auto;
+    }
+    body.js-reveal [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
